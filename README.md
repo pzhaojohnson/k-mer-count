@@ -1,1 +1,1 @@
-# k-mer-count
+# kmer-count
