@@ -3,6 +3,17 @@ import unittest
 from subtract_kmer_counts import subtract_kmer_counts
 
 
+class TestThatANewDictIsReturned(unittest.TestCase):
+    def test_two_kmer_counts_dicts_with_one_shared_kmer(self):
+        counts1 = { 'G': 8 }
+        counts2 = { 'G': 2 }
+        subtracted = subtract_kmer_counts(counts1, counts2)
+        self.assertEqual(subtracted, { 'G': 6 })
+        # the two input kmer counts dicts were not changed
+        self.assertEqual(counts1, { 'G': 8 })
+        self.assertEqual(counts2, { 'G': 2 })
+
+
 class TestEmptyKmerCountsDicts(unittest.TestCase):
     def test_two_empty_kmer_counts_dicts(self):
         subtracted = subtract_kmer_counts({}, {})
