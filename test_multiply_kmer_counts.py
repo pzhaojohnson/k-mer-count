@@ -4,6 +4,13 @@ from multiply_kmer_counts import multiply_kmer_counts
 
 
 class TestMultiplyKmerCountsFunction(unittest.TestCase):
+    def test_that_a_new_dict_is_returned(self):
+        counts = { 'AC': 2, 'GGG': 24 }
+        multiplied = multiply_kmer_counts(counts, 1)
+        self.assertTrue(multiplied == counts)
+        # a new dict was returned
+        self.assertFalse(multiplied is counts)
+
     def test_empty_kmer_counts_dict(self):
         multiplied = multiply_kmer_counts({}, 2)
         self.assertEqual(multiplied, {})
