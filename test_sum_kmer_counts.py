@@ -3,6 +3,17 @@ import unittest
 from sum_kmer_counts import sum_kmer_counts
 
 
+class TestThatANewDictIsReturned(unittest.TestCase):
+    def test_two_kmer_counts_dicts_with_one_shared_kmer(self):
+        kmer_counts1 = { 'AA': 24 }
+        kmer_counts2 = { 'AA': 31 }
+        sum_ = sum_kmer_counts(kmer_counts1, kmer_counts2)
+        self.assertEqual(sum_, { 'AA': 55 })
+        # the two input kmer counts dicts were not modified
+        self.assertEqual(kmer_counts1, { 'AA': 24 })
+        self.assertEqual(kmer_counts2, { 'AA': 31 })
+
+
 class TestEmptyKmerCountsDicts(unittest.TestCase):
     def test_both_kmer_counts_dicts_are_empty(self):
         sum_ = sum_kmer_counts({}, {})
